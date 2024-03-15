@@ -6,4 +6,3 @@ Olen aluksi pohtinut että sovellus noudattaisi aika paljon materiaalin esimerkk
 
 Olen esimerkin lisäksi pohtinut mahdollisuutta lisätä ylläpitäjiä joilla on kyky vastaanottaa valituksia ja kyky jaella porttikieltoja ja poistaa kursseja opettajien lisäksi.
 
-Testataan toimiiko paikallisesti
