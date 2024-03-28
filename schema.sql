@@ -1,1 +1,4 @@
 CREATE TABLE visitors (id SERIAL PRIMARY KEY, time TIMESTAMP);
+CREATE TABLE teacher (id SERIAL PRIMARY KEY, username TEXT UNIQUE, password TEXT);
+CREATE TABLE courses ( id SERIAL PRIMARY KEY, name TEXT);
+CREATE TABLE coursesteachers ( id SERIAL PRIMARY KEY, course_id INTEGER REFERENCES courses, teacher_id INTEGER REFERENCES teacher);
