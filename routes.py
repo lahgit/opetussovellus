@@ -13,7 +13,10 @@ def index():
 @app.route("/kurssi/<int:id>")
 def page(id):
     material = messages.read_course_material(id)
-    return render_template("coursetemplate.html", material=material)
+    if material == None:
+        return render_template("error.html", message="materiaalia ei löytynyt")
+    else:
+        return render_template("coursetemplate.html", material=material)
 
 @app.route("/new")
 def new():

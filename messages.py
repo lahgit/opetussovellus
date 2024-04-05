@@ -18,7 +18,10 @@ def get_list_for_menu(user_id):
 def read_course_material(idd):
     sql = "SELECT C.textcontent FROM coursecontent C WHERE C.course_id = (:id)"
     result = db.session.execute(text(sql), {"id":idd})
-    return result.fetchone()[0]
+    rivi = result.fetchone()
+    if rivi:
+        return rivi[0]
+    else: return None
 
 
 

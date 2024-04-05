@@ -1,0 +1,17 @@
+<!doctype html>
+<title>Opetussovellus - {% block title %}{% endblock %}</title>
+<h1>Opetussovellus</h1>
+<a href="/">Etusivu</a>
+<br>
+{% if session.user_id %}
+Olet kirjautunut sisään.
+<br>
+<a href="/new">Lisää kurssi</a> | <a href="/logout">Kirjaudu ulos |</a>
+{% else %}
+<a href="/login">Kirjautuminen</a>
+{% endif %}
+<a href="/menu"> Tarkastele kurssejasi</a>
+<hr>
+{% block content %}{% endblock %}
+<hr>
+Voit lähettää palautetta <a href="#">tästä</a>

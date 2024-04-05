@@ -5,6 +5,8 @@
 
 {% if not session.user_id %}
 <p> Et ole kirjautunut sisään!</p>
+<br>
+<a href=/login>Tästä kirjautumaan!</a>
 {% endif %}
 
 {% if session.user_id %}

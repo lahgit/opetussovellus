@@ -1,22 +1,6 @@
-Kurssien määrä: {{ count }}
-<br>
-<a href="/menu"> Tarkastele kurssejasi</a>
-<hr>
-{% for message in messages %}
-<b>{{ message[0] }} </b>
-<p>
-<a href="/kurssi/{{message[4]}}"> Klikkaa tästä päästäksesi kurssille!</a>
-<p>
-<i>Kurssin opettaja:</i> {{ message[1] }}
-<p>
-<i>Aika:</i> {{ message[2].strftime("%Y-%m-%d %H:%M:%S") }}
-<p>
-<em>{{ message[3] }}</em>
-<hr>
-{% endfor %}
-{% if session.user_id %}
-Olet kirjautunut sisään.
-<a href="/new">Lähetä viesti</a> | <a href="/logout">Kirjaudu ulos</a>
-{% else %}
-<a href="/login">Kirjaudu sisään</a>
-{% endif %}
+{% extends "layout.html" %}
+{% block title %}Etusivu{% endblock %}
+{% block content %}
+<h2>Etusivu</h2>
+Tervetuloa sovellukseen!
+{% endblock %}
