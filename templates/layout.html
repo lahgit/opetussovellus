@@ -1,17 +1,45 @@
 <!doctype html>
 <title>Opetussovellus - {% block title %}{% endblock %}</title>
-<h1>Opetussovellus</h1>
-<a href="/">Etusivu</a>
+<style>
+    body {
+    margin: auto;
+    max-width: 45em;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+}
+    .header {
+        background: rgb(153, 110, 173);
+        font-weight: bold;
+        padding: 1em 0.5em;
+        font-size: 1em;
+    }
+</style>
+
+
+<body>
+    <div class="header">
+        <h1>Opetussovellus</h1>
+      </div>      
+    <nav>
+      <ul>
+        {% if session.user_id %}
+        <p>Olet kirjautunut sisään</p>
+        <li><a href="/">Etusivu</a></li>
+        <li><a href="/new">Lisää kurssi</a></li>
+        <li><a href="/logout">Kirjaudu ulos </a></li>
+        <li><a href="/menu"> Tarkastele kurssejasi</a></li>
+        {% else %}
+        <li><a href="/">Etusivu</a></li>
+        <li><a href="/login">Kirjautuminen</a></li>
+        {% endif %}
+
+        
+      </ul>
+    </nav>
+
 <br>
-{% if session.user_id %}
-Olet kirjautunut sisään.
-<br>
-<a href="/new">Lisää kurssi</a> | <a href="/logout">Kirjaudu ulos |</a>
-{% else %}
-<a href="/login">Kirjautuminen</a>
-{% endif %}
-<a href="/menu"> Tarkastele kurssejasi</a>
+
 <hr>
 {% block content %}{% endblock %}
+
 <hr>
 Voit lähettää palautetta <a href="#">tästä</a>
