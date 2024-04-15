@@ -1,4 +1,4 @@
-<b>Tervetuloa tarkastelemaan tietojasi!</b>
+<b>Tervetuloa tarkastelemaan kursseja!</b>
 <br>
 <br>
 <hr>
@@ -7,19 +7,13 @@
 <p> Et ole kirjautunut sisään!</p>
 <br>
 <a href=/login>Tästä kirjautumaan!</a>
+<hr>
 {% endif %}
-
-
 
 {% if session.user_id %}
 
-
-
-{% if isCourses %}
-<b> Sinun kurssit: </b>
-<p>
-<hr>
 {% endif %}
+
 
 {% for message in messages %}
 <b>{{ message[0] }} </b>
@@ -33,5 +27,3 @@
 <em>{{ message[3] }}</em>
 <hr>
 {% endfor %}
-
-{% endif %}

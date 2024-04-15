@@ -26,7 +26,12 @@ def new():
 def menu():
     user_id = users.user_id()
     list = messages.get_list_for_menu(user_id)
-    return render_template("coursemanagermenu.html", messages=list)
+    isCourses = False
+    if list:
+        if len(list) > 0:
+            isCourses = True
+
+    return render_template("coursemanagermenu.html", messages=list, isCourses=isCourses)
 
 @app.route("/send", methods=["POST"])
 def send():
@@ -37,6 +42,11 @@ def send():
         return redirect("/")
     else:
         return render_template("error.html", message="Kurssin lisäys ei onnistunut")
+    
+@app.route("/courses")
+def kurssilista():
+    list = messages.get_list()
+    return render_template("courselist.html", messages=list)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():

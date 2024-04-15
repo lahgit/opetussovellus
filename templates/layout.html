@@ -5,6 +5,7 @@
     margin: auto;
     max-width: 45em;
     font-family: 'Helvetica', 'Arial', sans-serif;
+
 }
     .header {
         background: rgb(153, 110, 173);
@@ -26,10 +27,12 @@
         <li><a href="/">Etusivu</a></li>
         <li><a href="/new">Lisää kurssi</a></li>
         <li><a href="/logout">Kirjaudu ulos </a></li>
-        <li><a href="/menu"> Tarkastele kurssejasi</a></li>
+        <li><a href="/menu"> Tarkastele tietojasi</a></li>
+        <li><a href="/courses">Kurssilista</a></li>
         {% else %}
         <li><a href="/">Etusivu</a></li>
         <li><a href="/login">Kirjautuminen</a></li>
+        <li><a href="/courses">Kurssilista</a></li>
         {% endif %}
 
         
