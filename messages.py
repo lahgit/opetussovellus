@@ -17,10 +17,13 @@ def get_list_for_menu(user_id):
 
 def read_course_material(idd):
     sql = "SELECT C.textcontent FROM coursecontent C WHERE C.course_id = (:id)"
+    sql2 = "SELECT C.title FROM courses C WHERE c.id = (:id)"
     result = db.session.execute(text(sql), {"id":idd})
+    result2 = db.session.execute(text(sql2), {"id":idd})
     rivi = result.fetchone()
-    if rivi:
-        return rivi[0]
+    rivi2 = result2.fetchone()
+    if rivi and rivi2:
+        return [rivi[0],rivi2[0]]
     else: return None
 
 

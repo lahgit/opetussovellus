@@ -1,1 +1,36 @@
-{{ material }}
+<!doctype html>
+<style>
+    body {
+    margin: auto;
+    max-width: 45em;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+
+}
+    .header {
+        background: rgb(153, 110, 173);
+        font-weight: bold;
+        padding: 1em 0.5em;
+        font-size: 1em;
+    }
+</style>
+
+<title>{{desc}}</title>
+<div class="header">
+    <h1>{{desc}}</h1>
+  </div>   
+<body>
+<br>
+<b>Kuvaus kurssista:</b>
+<p>{{ material }}</p>
+
+{% if isCourses %}
+<p>et ole kirjautunut</p>
+<a href="/login">Kirjaudu tästä</a>
+{% endif %}
+
+{% if session.user_id %}
+<p>Aloita suorittaminen</p>
+{% endif %}
+
+
+</body>

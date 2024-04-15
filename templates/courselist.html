@@ -1,18 +1,43 @@
+<!doctype html>
+<style>
+    body {
+    margin: auto;
+    max-width: 45em;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+
+}
+    .header {
+        background: rgb(153, 110, 173);
+        font-weight: bold;
+        padding: 1em 0.5em;
+        font-size: 1em;
+    }
+</style>
+
+
+<body>
+<div class="header">
 <b>Tervetuloa tarkastelemaan kursseja!</b>
-<br>
-<br>
-<hr>
+<nav>
+    <ul>
+      {% if session.user_id %}
+      <p>Olet kirjautunut sisään</p>
+      <li><a href="/">Etusivu</a></li>
+      <li><a href="/new">Lisää kurssi</a></li>
+      <li><a href="/logout">Kirjaudu ulos </a></li>
+      <li><a href="/menu"> Tarkastele tietojasi</a></li>
+      {% else %}
+      <li><a href="/">Etusivu</a></li>
+      <li><p> Et ole kirjautunut sisään!</p>
+        <a href=/login>Tästä kirjautumaan!</a></li>
+      {% endif %}
 
-{% if not session.user_id %}
-<p> Et ole kirjautunut sisään!</p>
+      
+    </ul>
+  </nav>
+</div>
+
 <br>
-<a href=/login>Tästä kirjautumaan!</a>
-<hr>
-{% endif %}
-
-{% if session.user_id %}
-
-{% endif %}
 
 
 {% for message in messages %}
@@ -27,3 +52,5 @@
 <em>{{ message[3] }}</em>
 <hr>
 {% endfor %}
+
+</body>
