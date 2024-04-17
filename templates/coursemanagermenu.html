@@ -1,13 +1,46 @@
-<b>Tervetuloa tarkastelemaan tietojasi!</b>
-<br>
-<br>
-<hr>
+<!doctype html>
+<style>
+    body {
+    margin: auto;
+    max-width: 45em;
+    font-family: 'Helvetica', 'Arial', sans-serif;
 
-{% if not session.user_id %}
-<p> Et ole kirjautunut sisään!</p>
-<br>
-<a href=/login>Tästä kirjautumaan!</a>
-{% endif %}
+}
+    .header {
+        background: rgb(153, 110, 173);
+        font-weight: bold;
+        padding: 1em 0.5em;
+        font-size: 1em;
+    }
+
+    .info {
+        font-size: 2em;
+    }
+</style>
+
+
+<body>
+    <div class="header">
+        <b class="info">Tervetuloa tarkastelemaan tietojasi!</b>
+        <nav>
+            <ul>
+              {% if session.user_id %}
+              <p>Olet kirjautunut sisään</p>
+              <li><a href="/">Etusivu</a></li>
+              <li><a href="/new">Lisää kurssi</a></li>
+              <li><a href="/logout">Kirjaudu ulos </a></li>
+              {% else %}
+              <li><a href="/">Etusivu</a></li>
+              <li><p> Et ole kirjautunut sisään!</p>
+                <a href=/login>Tästä kirjautumaan!</a></li>
+              {% endif %}
+        
+              
+            </ul>
+          </nav>
+        </div>
+
+
 
 
 
@@ -16,9 +49,12 @@
 
 
 {% if isCourses %}
-<b> Sinun kurssit: </b>
+<div class="info">
 <p>
-<hr>
+<p>
+<b> Sinun kurssit: </b>
+</div>
+<p>
 {% endif %}
 
 {% for message in messages %}
@@ -31,7 +67,10 @@
 <i>Aika:</i> {{ message[2].strftime("%Y-%m-%d %H:%M:%S") }}
 <p>
 <em>{{ message[3] }}</em>
+<p>
+<a href="/edit/{{message[4]}}"> Muokkaa kurssia</a>
 <hr>
 {% endfor %}
 
 {% endif %}
+</body>

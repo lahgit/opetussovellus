@@ -26,6 +26,21 @@ def page(id):
         return render_template("error.html", message="materiaalia ei löytynyt")
     else:
         return render_template("coursetemplate.html", material=material[0], desc=material[1], isCourses=isCourses)
+    
+
+@app.route("/edit/<int:id>")
+def edit(id):
+    course = messages.get_course(id)
+    user_id = users.user_id()
+
+
+
+    
+    if course:
+        return render_template("editmenu.html",info=course[0])
+    else: return render_template("error.html", message="materiaalia ei löytynyt")
+
+
 
 @app.route("/new")
 def new():
@@ -41,6 +56,8 @@ def menu():
             isCourses = True
 
     return render_template("coursemanagermenu.html", messages=list, isCourses=isCourses)
+
+
 
 @app.route("/send", methods=["POST"])
 def send():

@@ -15,6 +15,12 @@ def get_list_for_menu(user_id):
     result = db.session.execute(text(sql), {"user_id":user_id})
     return result.fetchall()
 
+def get_course(course_id):
+    sql = "SELECT M.title, U.username, M.sent_at, M.description, M.id FROM courses M, users U " \
+          "WHERE M.id = (:course_id) AND U.id = M.user_id ORDER BY M.id"
+    result = db.session.execute(text(sql), {"course_id":course_id})
+    return result.fetchall()
+
 def read_course_material(idd):
     sql = "SELECT C.textcontent FROM coursecontent C WHERE C.course_id = (:id)"
     sql2 = "SELECT C.title FROM courses C WHERE c.id = (:id)"
