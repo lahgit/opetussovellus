@@ -21,6 +21,12 @@ def get_course(course_id):
     result = db.session.execute(text(sql), {"course_id":course_id})
     return result.fetchall()
 
+def get_user_from_course(id):
+    sql = "SELECT U.id FROM courses C, users U " \
+          "WHERE C.id = (:course_id) AND U.id = C.user_id"
+    result = db.session.execute(text(sql), {"course_id":id})
+    return result.fetchone()
+
 def read_course_material(idd):
     sql = "SELECT C.textcontent FROM coursecontent C WHERE C.course_id = (:id)"
     sql2 = "SELECT C.title FROM courses C WHERE c.id = (:id)"
@@ -31,6 +37,17 @@ def read_course_material(idd):
     if rivi and rivi2:
         return [rivi[0],rivi2[0]]
     else: return None
+
+
+def delete_course(id):
+    try:
+        sql = "DELETE FROM courses C WHERE C.id = (:id);"
+        db.session.execute(text(sql), {"id":id})
+        db.session.commit()
+        return True
+    except:
+        db.session.rollback()
+        return False
 
 
 

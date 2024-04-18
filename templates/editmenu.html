@@ -23,7 +23,11 @@
 <b>Tietoja kurssista:</b>
 <p>Julkaistu: {{ info[2] }}</p>
 <p>Lyhyt kuvaus: {{info[3]}}</p>
-<form action="/result" method="POST"></form>
+
+
+<form action="/edit/{{info[4]}}" method="POST">
+
+<input type="hidden" name="action" value="delete">
 
 <input type="submit" value="Poista kurssi">
 </form>

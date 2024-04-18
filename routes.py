@@ -28,17 +28,25 @@ def page(id):
         return render_template("coursetemplate.html", material=material[0], desc=material[1], isCourses=isCourses)
     
 
-@app.route("/edit/<int:id>")
+@app.route("/edit/<int:id>", methods=["GET", "POST"])
 def edit(id):
-    course = messages.get_course(id)
-    user_id = users.user_id()
+    if request.method == "GET":
+        course = messages.get_course(id)
+        user_id = users.user_id()
+        a = messages.get_user_from_course(id)
+        material = messages.read_course_material(id)
 
+        if material == None:
+            return render_template("error.html", message="materiaalia ei löytynyt")
 
+        if user_id == a[0]:
+            return render_template("editmenu.html",info=course[0])
+        else: return render_template("error.html", message="ei oikeutta muokata kurssia")
+    if request.method == "POST":
+        if request.form["action"] == "delete":
+            messages.delete_course(id)
 
-    
-    if course:
-        return render_template("editmenu.html",info=course[0])
-    else: return render_template("error.html", message="materiaalia ei löytynyt")
+            return redirect("/menu")
 
 
 
