@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, session, abort
 import messages, users
 
 from db import db
@@ -27,6 +27,11 @@ def page(id):
     else:
         return render_template("coursetemplate.html", material=material[0], desc=material[1], isCourses=isCourses)
     
+@app.route("/kurssi/<int:id>/<int:id2>")
+def page2(id, id2):
+    return render_template("coursepage.html", id2=id2)
+    
+    
 
 @app.route("/edit/<int:id>", methods=["GET", "POST"])
 def edit(id):
@@ -42,11 +47,21 @@ def edit(id):
         if user_id == a[0]:
             return render_template("editmenu.html",info=course[0])
         else: return render_template("error.html", message="ei oikeutta muokata kurssia")
-    if request.method == "POST":
-        if request.form["action"] == "delete":
-            messages.delete_course(id)
 
-            return redirect("/menu")
+
+    if request.method == "POST":
+
+        course = messages.get_course(id)
+        user_id = users.user_id()
+        a = messages.get_user_from_course(id)
+
+
+        if request.form["action"] == "delete":
+            if session["csrf_token"] != request.form["csrf_token"] or user_id != a[0]:
+                abort(403)
+            else: 
+                messages.delete_course(id)
+                return redirect("/menu")
 
 
 
