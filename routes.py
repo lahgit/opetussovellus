@@ -13,6 +13,7 @@ def index():
 @app.route("/kurssi/<int:id>")
 def page(id):
     material = messages.read_course_material(id)
+    a = messages.get_desc(id)[0]
 
     user_id = users.user_id()
     list = messages.get_list_for_menu(user_id)
@@ -25,11 +26,12 @@ def page(id):
     if material == None:
         return render_template("error.html", message="materiaalia ei löytynyt")
     else:
-        return render_template("coursetemplate.html", material=material[0], desc=material[1], isCourses=isCourses)
+        return render_template("coursetemplate.html", material=a, desc=material[1], isCourses=isCourses,course=id)
     
 @app.route("/kurssi/<int:id>/<int:id2>")
 def page2(id, id2):
-    return render_template("coursepage.html", id2=id2)
+    a = messages.search_content(id,id2)
+    return render_template("coursepage.html", id2 = a)
     
     
 
