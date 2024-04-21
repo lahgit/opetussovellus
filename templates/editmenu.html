@@ -34,7 +34,42 @@
 <input type="submit" value="Poista kurssi">
 </form>
 
+<hr>
+<b>Lisää Kysely</b>
 
+<form action="/edit/{{info[4]}}" method="POST">
+    <p>Aihe:<br>
+    <input type="text" name="topic"></p>
+    <p>Sivunumero:</p>
+    <input type="text" name="pagenumber"></p>
+    <p>Vaihtoehto 1:<br>
+    <input type="text" name="choice"></p>
+    <p>Vaihtoehto 2:<br>
+    <input type="text" name="choice"></p>
+    <p>Vaihtoehto 3:<br>
+    <input type="text" name="choice"></p>
+    <p>Vaihtoehto 4:<br>
+    <input type="text" name="choice"></p>
+
+    <input type="hidden" name="add_course" value="add">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+
+    <input type="submit" value="Luo kysely">
+</form>    
+<hr>
+<b>Lisää tekstiä</b>
+
+<form action="/edit/{{info[4]}}" method="POST">
+
+    <textarea name="textforcourse" rows="4" cols="40"></textarea>
+    <p>Sivunumero:</p>
+    <input type="text" name="pagenumber2"></p>
+
+    <input type="hidden" name="add_text" value="add2">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    <input type="submit" value="Lisää tekstiä">
+
+</form>
 
 
 </body>

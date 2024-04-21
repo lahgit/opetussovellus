@@ -52,18 +52,47 @@ def edit(id):
 
 
     if request.method == "POST":
-
+        
         course = messages.get_course(id)
         user_id = users.user_id()
         a = messages.get_user_from_course(id)
 
 
-        if request.form["action"] == "delete":
+        if "add_course" in request.form and request.form["add_course"] == "add":
+            if session["csrf_token"] != request.form["csrf_token"] or user_id != a[0]:
+                abort(403)
+            else:
+                topic = request.form["topic"]
+                pagenum = request.form["pagenumber"]
+                sql = "INSERT INTO polls (topic, created_at, course_id,pagenumber) VALUES (:topic, NOW(), :id,:pagenumber) RETURNING id"
+                result = db.session.execute(text(sql), {"topic":topic, "id":id, "pagenumber":pagenum})
+                poll_id = result.fetchone()[0]
+                choices = request.form.getlist("choice")
+                for choice in choices:
+                    if choice != "":
+                        sql = "INSERT INTO choices (poll_id, choice) VALUES (:poll_id, :choice)"
+                        db.session.execute(text(sql), {"poll_id":poll_id, "choice":choice})
+                db.session.commit()
+                return redirect("/")
+
+
+        elif "action" in request.form and request.form["action"] == "delete":
             if session["csrf_token"] != request.form["csrf_token"] or user_id != a[0]:
                 abort(403)
             else: 
                 messages.delete_course(id)
                 return redirect("/menu")
+            
+        elif "add_text" in request.form and request.form["add_text"] == "add2":
+            if session["csrf_token"] != request.form["csrf_token"] or user_id != a[0]:
+                abort(403)
+            else: 
+                thetext = request.form["textforcourse"]
+                pagenum2 = request.form["pagenumber2"]
+                sql = "INSERT INTO coursecontent (course_id, textcontent, pagenumber) VALUES (:id, :text, :page)"
+                result = db.session.execute(text(sql), {"id":id, "text":thetext, "page":pagenum2})
+                db.session.commit()
+                return redirect(f"/edit/{id}")
 
 
 

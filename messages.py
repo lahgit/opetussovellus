@@ -52,10 +52,12 @@ def delete_course(id):
         return True
     except:
         db.session.rollback()
+        print("AAAAA")
         return False
     
+    
 def search_content(id,id2):
-    sql = "SELECT C.textcontent FROM coursecontent C WHERE C.course_id = (:id) AND C.page =  (:id2)"
+    sql = "SELECT C.textcontent FROM coursecontent C WHERE C.course_id = (:id) AND C.pagenumber =  (:id2)"
 
     result = db.session.execute(text(sql), {"id":id, "id2":id2})
 
@@ -79,7 +81,7 @@ def send(content, description,textcontent):
     try:
         sql = "INSERT INTO courses (title, user_id, description, sent_at) VALUES (:content, :user_id, :description, NOW()) RETURNING id"
 
-        sql2 = "INSERT INTO coursecontent (course_id, textcontent, page) VALUES (:course_id, :textcontent, 1)"
+        sql2 = "INSERT INTO coursecontent (course_id, textcontent, pagenumber) VALUES (:course_id, :textcontent, 1)"
 
         courses_id_get = db.session.execute(text(sql), {"content":content, "user_id":user_id, "description":description}).fetchone()
 
