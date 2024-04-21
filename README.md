@@ -2,15 +2,43 @@
 Tietokannat ja web-ohjelmointi kurssi.
 
 
-Olen aluksi pohtinut että sovellus noudattaisi aika paljon materiaalin esimerkkiä opetussovelluksesta https://hy-tsoha.github.io/materiaali/aiheen_valinta/.
+Sovelluksessa voi lisätä käyttäjiä ja kursseja. Tällä hetkellä materiaalin lisääminen toimii osittain ja kurssien poistaminen toimii.
 
-Olen esimerkin lisäksi pohtinut mahdollisuutta lisätä ylläpitäjiä joilla on kyky vastaanottaa valituksia ja kyky jaella porttikieltoja ja poistaa kursseja opettajien lisäksi.
-
-
-palautus 2:
-
-Tällä hetkellä sovelluksessa voi luoda käyttäjiä ja käyttäjät voivat luoda kursseja joissa on pelkästään teksti materiaalia.
-
-Kirjautunut käyttäjä voi tällä hetkellä myös tarkastella omia lisäämiään kursseja.
+Ulkoasu ei ole täysin valmis.
 
 
+
+guide:
+
+create a new folder:
+
+$ mkdir app
+$ cd app
+
+clone repository
+$ git init
+$ git clone https://github.com/lahgit/opetussovellus.git
+
+create environment
+
+$ python3 -m venv venv
+
+$ source venv/bin/activate
+
+install requirements
+$ pip install -r requirements.txt
+
+import schema:
+
+$ psql < schema.sql
+
+create .env file
+
+and instert
+
+DATABASE_URL=postgresql:///{user}
+SECRET_KEY={secret_key}
+
+run application
+
+$ flask run
