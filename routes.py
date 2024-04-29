@@ -28,12 +28,25 @@ def page(id):
     else:
         return render_template("coursetemplate.html", material=a, desc=material[1], isCourses=isCourses,course=id)
     
-@app.route("/kurssi/<int:id>/<int:id2>")
+@app.route("/kurssi/<int:id>/<int:id2>", methods=["GET", "POST"])
 def page2(id, id2):
-    a = messages.search_content(id,id2)
-    b = messages.search_polls(id,id2)
-    print(b)
-    return render_template("coursepage.html", id2 = a, seuraava = id2 + 1, seuraava2 = id, choices = b[1], topic=b[0])
+    if request.method == "GET":
+        a = messages.search_content(id,id2)
+        b = messages.search_polls(id,id2)
+        print(b)
+        return render_template("coursepage.html", id2 = a, seuraava = id2 + 1, seuraava2 = id, choices = b[1], topic=b[0], id22=id2, id=id)
+    if request.method == "POST":
+        user_id = users.user_id()
+        if not user_id:
+            return render_template("error.html", message="Et ole kirjautunut sisään")
+        
+        if "answer" in request.form:
+            choice_id = request.form["answer"]
+            sql = "INSERT INTO answers (choice_id, sent_at, answered_by) VALUES (:choice_id, NOW(), :user_id)"
+            db.session.execute(text(sql), {"choice_id":choice_id, "user_id":user_id})
+            db.session.commit()
+            return redirect(f"/kurssi/{id}/{id2}")
+
     
     
 
