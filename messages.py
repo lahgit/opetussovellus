@@ -61,13 +61,39 @@ def search_content(id,id2):
 
     result = db.session.execute(text(sql), {"id":id, "id2":id2})
 
-    print(id)
-    print(id2)
+    #print(id)
+    #print(id2)
 
-    a = result.fetchone()
+    a = result.fetchall()
 
     if a:
-        return a[0]
+        return a
+    else:
+        return None
+    
+
+def search_polls(id,id2):
+    sql = "SELECT id, topic FROM polls C WHERE C.course_id = (:id) AND C.pagenumber =  (:id2)"
+
+    
+    
+
+    result = db.session.execute(text(sql), {"id":id, "id2":id2})
+
+    results = result.fetchall()
+
+    topic = results[0][1]
+    the_poll_id = results[0][0]
+
+    sql = "SELECT id, choice FROM choices WHERE poll_id=:id"
+    result = db.session.execute(text(sql), {"id":the_poll_id})
+
+    choices = result.fetchall()
+
+    print(topic,choices)
+
+    if choices and topic:
+        return topic, choices
     else:
         return None
 

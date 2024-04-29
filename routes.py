@@ -31,7 +31,9 @@ def page(id):
 @app.route("/kurssi/<int:id>/<int:id2>")
 def page2(id, id2):
     a = messages.search_content(id,id2)
-    return render_template("coursepage.html", id2 = a)
+    b = messages.search_polls(id,id2)
+    print(b)
+    return render_template("coursepage.html", id2 = a, seuraava = id2 + 1, seuraava2 = id, choices = b[1], topic=b[0])
     
     
 
