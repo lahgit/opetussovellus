@@ -33,8 +33,16 @@ def page2(id, id2):
     if request.method == "GET":
         a = messages.search_content(id,id2)
         b = messages.search_polls(id,id2)
-        print(b)
+
+        if not a and not b:
+            return render_template("coursepage.html", id2=[["Ei sisältöä"]], seuraava=id2 + 1, seuraava2=id, message="ei kyselyjä", id22=id2, id=id)
+        if not b and a:  # If there are no polls for the page
+            return render_template("coursepage.html", id2=a, seuraava=id2 + 1, seuraava2=id, message="ei kyselyjä", id22=id2, id=id)
+        if not a and b:
+            return render_template("coursepage.html", id2 = [["Ei sisältöä"]], seuraava = id2 + 1, seuraava2 = id, choices = b[1], topic=b[0], id22=id2, id=id)
+        
         return render_template("coursepage.html", id2 = a, seuraava = id2 + 1, seuraava2 = id, choices = b[1], topic=b[0], id22=id2, id=id)
+    
     if request.method == "POST":
         user_id = users.user_id()
         if not user_id:
@@ -46,6 +54,28 @@ def page2(id, id2):
             db.session.execute(text(sql), {"choice_id":choice_id, "user_id":user_id})
             db.session.commit()
             return redirect(f"/kurssi/{id}/{id2}")
+        
+
+
+
+@app.route("/answers/<int:id>", methods=["GET", "POST"])
+def checkanswers(id):
+    if request.method == "GET":
+        course = messages.get_course(id)
+        user_id = users.user_id()
+        a = messages.get_user_from_course(id)
+        material = messages.read_course_material(id)
+        answers = messages.search_answers(id)
+
+        if material == None:
+            return render_template("error.html", message="materiaalia ei löytynyt")
+
+        if user_id == a[0]:
+            return render_template("answerlist.html",answers=answers)
+        else: return render_template("error.html", message="ei oikeutta nähdä sivua")
+
+
+
 
     
     

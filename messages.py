@@ -74,13 +74,14 @@ def search_content(id,id2):
 
 def search_polls(id,id2):
     sql = "SELECT id, topic FROM polls C WHERE C.course_id = (:id) AND C.pagenumber =  (:id2)"
-
-    
     
 
     result = db.session.execute(text(sql), {"id":id, "id2":id2})
 
     results = result.fetchall()
+
+    if not results:
+        return None
 
     topic = results[0][1]
     the_poll_id = results[0][0]
@@ -96,6 +97,28 @@ def search_polls(id,id2):
         return topic, choices
     else:
         return None
+    
+
+
+
+
+def search_answers(course_id):
+
+    sql = """SELECT a.id, c.choice, u.username, a.sent_at
+    FROM answers a
+    LEFT JOIN choices c ON a.choice_id = c.id
+    LEFT JOIN users u ON a.answered_by = u.id
+    JOIN polls p ON c.poll_id = p.id
+    WHERE p.course_id = (:course_id)
+    ORDER BY a.sent_at"""
+
+    courses_id_get = db.session.execute(text(sql), {"course_id":course_id}).fetchall()
+
+    print(courses_id_get)
+
+    return courses_id_get
+
+
 
 
 

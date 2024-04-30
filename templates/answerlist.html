@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+Vastaukset:
+
+<br>
+
+{% for answer in answers%}
+
+<b>{{ answer[0] }} </b>
+<p>
+<p>
+<i>Vastaus:</i> {{ answer[1] }}
+<p>
+<i>Käyttäjä:</i> {{ answer[2] }}
+<p>
+<i>Aika:</i> {{ answer[3].strftime("%Y-%m-%d %H:%M:%S") }}
+<p>
+
+<p>
+
+<hr>
+{% endfor %}
