@@ -104,7 +104,7 @@ def search_polls(id,id2):
 
 def search_answers(course_id):
 
-    sql = """SELECT a.id, c.choice, u.username, a.sent_at
+    sql = """SELECT a.id, c.choice, u.username, a.sent_at, p.topic
     FROM answers a
     LEFT JOIN choices c ON a.choice_id = c.id
     LEFT JOIN users u ON a.answered_by = u.id

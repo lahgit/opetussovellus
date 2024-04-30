@@ -1,13 +1,36 @@
 <!DOCTYPE html>
+<style>
+    body {
+    margin: auto;
+    max-width: 45em;
+    font-family: 'Helvetica', 'Arial', sans-serif;
 
-Vastaukset:
+}
+    .header {
+        background: rgb(153, 110, 173);
+        font-weight: bold;
+        padding: 1em 0.5em;
+        font-size: 3em;
+    }
 
+    .info {
+        font-size: 2em;
+    }
+</style>
+
+<body>
+<div class="header">
+<b>Vastaukset:</b>
+</div>
+
+<br>
 <br>
 
 {% for answer in answers%}
 
 <b>{{ answer[0] }} </b>
 <p>
+<i>Kysymys: </i> {{ answer[4] }}
 <p>
 <i>Vastaus:</i> {{ answer[1] }}
 <p>
@@ -20,3 +43,5 @@ Vastaukset:
 
 <hr>
 {% endfor %}
+
+</body>
