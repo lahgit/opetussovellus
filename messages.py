@@ -119,6 +119,24 @@ def search_answers(course_id):
     return courses_id_get
 
 
+def search_answers2(course_id, search):
+
+    sql = """SELECT a.id, c.choice, u.username, a.sent_at, p.topic
+    FROM answers a
+    LEFT JOIN choices c ON a.choice_id = c.id
+    LEFT JOIN users u ON a.answered_by = u.id
+    JOIN polls p ON c.poll_id = p.id
+    WHERE p.course_id = (:course_id) AND
+    u.username LIKE :query
+    ORDER BY a.sent_at"""
+
+    courses_id_get = db.session.execute(text(sql), {"course_id":course_id, "query":"%"+search+"%"}).fetchall()
+
+    print(courses_id_get)
+
+    return courses_id_get
+
+
 
 
 
