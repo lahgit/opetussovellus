@@ -1,9 +1,43 @@
 <!DOCTYPE html>
 
+<style>
+    body {
+    margin: auto;
+    max-width: 45em;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+
+}
+    .header {
+        background: rgb(153, 110, 173);
+        font-weight: bold;
+        padding: 1em 0.5em;
+        font-size: 1em;
+    }
+
+    .info {
+        font-size: 2em;
+    }
+</style>
+
+<body>
+
+    <div class="header">
+        <h1>Arvosanat</h1>
+      </div>      
+    <nav>
+      <ul>
+        <li><a href="/">Etusivu</a></li>
+        <li><a href="/logout">Kirjaudu ulos </a></li>
+        <li><a href="/menu"> Tarkastele tietojasi</a></li>
+        <li><a href="/courses">Kurssilista</a></li>
+    
+      </ul>
+    </nav>
+
+<br>
 
 
 
-Your grades
 
 <br>
 <br>
@@ -17,3 +51,5 @@ Your grades
 <br>
 
 {% endfor %}
+
+</body>
