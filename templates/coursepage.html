@@ -20,7 +20,7 @@
 
 <body>
 
-{% for message in id2 %}
+{% for message in material %}
 
 
 {{ message[0] }} 
@@ -31,11 +31,11 @@
 {% endfor %}
 
 
-
-{{ topic }}
+{% for one in topic %}
+{{ one[0] }}
 <hr>
 <form action="/kurssi/{{id}}/{{id22}}" method="POST">
-{% for choice in choices %}
+{% for choice in one[1] %}
 <input type="radio" name="answer" value="{{ choice.id }}"> {{ choice.choice }} <br>
 {% endfor %}
 <p>
@@ -45,7 +45,7 @@
 {%endif%}
 </form>
 <hr>
-
+{% endfor %}
 
 
 

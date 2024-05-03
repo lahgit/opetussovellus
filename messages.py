@@ -82,21 +82,26 @@ def search_polls(id,id2):
 
     if not results:
         return None
+    
+    all_polls = []
 
-    topic = results[0][1]
-    the_poll_id = results[0][0]
+    for the_poll_id, topic in results:
 
-    sql = "SELECT id, choice FROM choices WHERE poll_id=:id"
-    result = db.session.execute(text(sql), {"id":the_poll_id})
+        sql = "SELECT id, choice FROM choices WHERE poll_id=:id"
+        result = db.session.execute(text(sql), {"id":the_poll_id})
 
-    choices = result.fetchall()
+        choices = result.fetchall()
 
-    print(topic,choices)
+        print(topic,choices)
 
-    if choices and topic:
-        return topic, choices
-    else:
+        all_polls.append((topic, choices))
+
+    print(all_polls)
+
+    if not all_polls:
         return None
+    else:
+        return all_polls
     
 
 
