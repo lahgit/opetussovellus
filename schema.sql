@@ -5,6 +5,7 @@ DROP TABLE coursecontent;
 DROP TABLE answers;
 DROP TABLE choices;
 DROP TABLE polls;
+DROP TABLE achievements;
 
 
 
@@ -31,4 +32,11 @@ CREATE TABLE answers (
     choice_id INTEGER REFERENCES choices ON DELETE CASCADE,
     answered_by INTEGER REFERENCES users ON DELETE CASCADE,
     sent_at TIMESTAMP
+);
+
+CREATE TABLE achievements (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users ON DELETE CASCADE,
+    course_id INTEGER REFERENCES courses ON DELETE CASCADE,
+    grade TEXT
 );

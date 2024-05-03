@@ -21,6 +21,8 @@
 <body>
 
 
+
+
         
 
 
@@ -28,6 +30,19 @@
 <div class="header">
 <b>Vastaukset:</b>
 </div>
+
+<br>
+
+<form action="/answers/{{id}}" method="post">
+    <b>Anna arvosana käyttäjälle</b>
+    <br>
+    Tunnus: <input type="text" name="username">
+    <p>
+    Arvosana: <input type="text" name="grade">
+    <p>
+    <p>
+    <input type="submit" value="Lähetä">
+    </form>
 
 <br>
 

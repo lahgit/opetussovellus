@@ -27,6 +27,39 @@ def page(id):
     else:
         return render_template("coursetemplate.html", material=a, desc=material[1], isCourses=isCourses,course=id)
     
+
+
+
+
+
+@app.route("/grades",  methods=["GET", "POST"])
+def gradepage():
+
+
+
+    user_id = users.user_id()
+    list = messages.get_list_for_menu(user_id)
+
+    sql = "SELECT C.title, A.grade FROM achievements A LEFT JOIN courses C ON A.course_id = C.id WHERE A.user_id = :id "
+
+    arvosanat = db.session.execute(text(sql), {"id":user_id}).fetchall()
+
+    print(arvosanat)
+
+    
+
+    if not user_id:
+        return render_template("error.html", message="Et ole kirjautunut")
+    else:
+        return render_template("gradepage.html", arvosanat = arvosanat)
+
+
+
+
+
+
+
+    
 @app.route("/kurssi/<int:id>/<int:id2>", methods=["GET", "POST"])
 def page2(id, id2):
     if request.method == "GET":
@@ -82,6 +115,25 @@ def checkanswers(id):
         if user_id == a[0]:
             return render_template("answerlist.html",answers=answers, id=id)
         else: return render_template("error.html", message="ei oikeutta nähdä sivua")
+
+    if request.method == "POST":
+        userforgrade = request.form["username"]
+        thegrade = request.form["grade"]
+        #print(userforgrade)
+        #print(thegrade)
+        sql = "INSERT INTO achievements (user_id, course_id,grade) VALUES (:userforgrade, :course_id, :thegrade)"
+        sql2 = "SELECT U.id FROM users U WHERE U.username = :name "
+
+        aaaaaaa = db.session.execute(text(sql2), {"name":userforgrade}).fetchone()
+        db.session.commit()
+        theuserrr = aaaaaaa[0]
+
+
+        db.session.execute(text(sql), {"userforgrade":theuserrr, "course_id":id, "thegrade":thegrade})
+        db.session.commit()
+        return redirect(f"/answers/{id}")
+        
+
 
 
 
