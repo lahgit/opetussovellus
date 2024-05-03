@@ -24,12 +24,17 @@
 <p>{{ material }}</p>
 
 {% if isCourses %}
-<p>et ole kirjautunut</p>
-<a href="/login">Kirjaudu tästä</a>
+
 {% endif %}
 
 {% if session.user_id %}
 <a href="/kurssi/{{ course }}/1">Aloita suorittaminen</a>
+
+{% else %}
+
+<p>et ole kirjautunut</p>
+<a href="/login">Kirjaudu tästä</a>
+
 {% endif %}
 
 

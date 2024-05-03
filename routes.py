@@ -7,8 +7,7 @@ from sqlalchemy.sql import text
 
 @app.route("/")
 def index():
-    list = messages.get_list()
-    return render_template("index.html", count=len(list), messages=list)
+    return render_template("index.html")
 
 @app.route("/kurssi/<int:id>")
 def page(id):
