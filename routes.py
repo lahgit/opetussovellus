@@ -39,7 +39,7 @@ def page2(id, id2):
         if not b and a: 
             return render_template("coursepage.html", material=a, seuraava=id2 + 1, seuraava2=id, message="ei kyselyjä", id22=id2, id=id)
         if not a and b:
-            return render_template("coursepage.html", material = [["Ei sisältöä"]], seuraava = id2 + 1, seuraava2 = id, choices = b[1], topic=b[0], id22=id2, id=id)
+            return render_template("coursepage.html", material = [["Ei sisältöä"]], seuraava = id2 + 1, seuraava2 = id, choices = b, topic=b, id22=id2, id=id)
         
         return render_template("coursepage.html", material = a, seuraava = id2 + 1, seuraava2 = id, choices = b, topic=b, id22=id2, id=id)
     
