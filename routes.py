@@ -224,7 +224,8 @@ def send():
     content = request.form["content"]
     description = request.form["description"]
     textcontent = request.form["contentforcourse"]
-    if messages.send(content,description,textcontent):
+    
+    if messages.send(content,description,textcontent) and session["csrf_token"] == request.form["csrf_token"]:
         return redirect("/")
     else:
         return render_template("error.html", message="Kurssin lisäys ei onnistunut")
