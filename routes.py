@@ -262,6 +262,16 @@ def register():
         username = request.form["username"]
         password1 = request.form["password1"]
         password2 = request.form["password2"]
+        
+        if len(password2) < 8:
+            return render_template("error.html", message="Salasana on liian lyhyt")
+        
+
+        if len(username) == 0:
+            return render_template("error.html", message="Käyttäjänimi ei saa olla tyhjä")
+
+
+
         if password1 != password2:
             return render_template("error.html", message="Salasanat eroavat")
         if users.register(username, password1):
