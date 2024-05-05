@@ -5,7 +5,7 @@ Tietokannat ja web-ohjelmointi kurssi.
 Sovelluksen idea on antaa käyttäjien luoda kursseja, suorittaa kursseja ja saada/antaa arvosana suorituksesta.
 
 - [x] Pystyy Rekisteröitymään, kirjautumaan ja kirjautumaan ulos
-- [x] Salasana pitää olla ainakin 8 merkkiä ja käyttäjänimi ei saa olla tyhjä
+- [x] Salasana pitää olla ainakin 8 merkkiä ja käyttäjänimi ei saa olla tyhjä tai olla yli 20 merkkiä pitkä
 - [x] Pystyy Lisäämään kursseja
 - [x] Kursseille pystyy lisäämään eri sivuille tekstimateriaalia ja kyselyjä
 - [x] Materiaaleja voi olla useampi yhtä sivua kohden
