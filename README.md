@@ -18,7 +18,7 @@ Sovelluksen idea on antaa käyttäjien luoda kursseja, suorittaa kursseja ja saa
 - [x] Kurssin tekijä voi lähettää haluamansa arvosanan käyttäjile
 - [x] Käyttäjä voi tarkastella saamiaan arvosanoja
 - [ ] Arvosanan lisäämistä varten on estoja jotka estävät laittamasta liikaa arvosanoja ja laittamasta niitä kenelle sattuu
-
+- [x] Vastaussivulla Näkyy monta eri käyttäjää ja monta vastausta siellä on
 
 
 Guide:
