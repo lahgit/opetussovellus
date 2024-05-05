@@ -12,27 +12,27 @@ guide:
 
 create a new folder:
 
-$ mkdir app
-$ cd app
+`$ mkdir app`
+`$ cd app`
 
 clone repository
-$ git init
-$ git clone https://github.com/lahgit/opetussovellus.git
+`$ git init`
+`$ git clone https://github.com/lahgit/opetussovellus.git`
 
 create environment
 
-$ python3 -m venv venv
+`$ python3 -m venv venv`
 
-$ source venv/bin/activate
+`$ source venv/bin/activate`
 
 install requirements
-$ pip install -r requirements.txt
+`$ pip install -r requirements.txt`
 
 import schema:
 
-$ psql < schema.sql
+`$ psql < schema.sql`
 
-create .env file
+`create .env file`
 
 and instert
 
@@ -41,4 +41,5 @@ SECRET_KEY={secret_key}
 
 run application
 
-$ flask run
+`$ flask run`
+
