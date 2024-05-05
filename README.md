@@ -2,9 +2,13 @@
 Tietokannat ja web-ohjelmointi kurssi.
 
 
-Sovelluksessa voi lisätä käyttäjiä ja kursseja. Kursseihin voi lisätä tekstimateriaaleja ja kyselyitä tai myös poistaa kokonaan.
-Kurssin tekijä voi katsoa käyttäjien antamia vastauksia ja antaa arvosanoja kursseille. Kurssin tekijä voi käyttää vastaussivulla olevaa hakutoimintoa etsiäkseen käyttäjiä nimeltä.
+Sovelluksen idea on antaa käyttäjien luoda kursseja, suorittaa kursseja ja saada/antaa arvosana suorituksesta.
 
+- [x] Pystyy Rekisteröitymään, kirjautumaan ja kirjautumaan ulos
+- [x] Pystyy Lisäämään kursseja
+- [x] Kursseille pystyy lisäämään eri sivuille tekstimateriaalia ja kyselyjä
+- [x] Materiaaleja voi olla useampi yhtä sivuakohden
+- [ ] Materiaaleja voi laittaa järjestykseen
 
 
 
