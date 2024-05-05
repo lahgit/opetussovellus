@@ -2,33 +2,33 @@
 Tietokannat ja web-ohjelmointi kurssi.
 
 
-Sovelluksessa voi lisätä käyttäjiä ja kursseja. Tällä hetkellä materiaalin lisääminen toimii osittain ja kurssien poistaminen toimii.
-
-Ulkoasu ei ole täysin valmis.
-
+Sovelluksessa voi lisätä käyttäjiä ja kursseja. Kursseihin voi lisätä tekstimateriaaleja ja kyselyitä tai myös poistaa kokonaan.
+Kurssin tekijä voi katsoa käyttäjien antamia vastauksia ja antaa arvosanoja kursseille. Kurssin tekijä voi käyttää vastaussivulla olevaa hakutoimintoa etsiäkseen käyttäjiä nimeltä.
 
 
-guide:
 
-create a new folder:
+
+Guide:
+
+Create a new folder:
 
 `$ mkdir app`
 `$ cd app`
 
-clone repository
+Clone repository
 `$ git init`
 `$ git clone https://github.com/lahgit/opetussovellus.git`
 
-create environment
+Create environment
 
 `$ python3 -m venv venv`
 
 `$ source venv/bin/activate`
 
-install requirements
+Install requirements
 `$ pip install -r requirements.txt`
 
-import schema:
+Import schema:
 
 `$ psql < schema.sql`
 
@@ -39,7 +39,7 @@ and instert
 DATABASE_URL=postgresql:///{user}
 SECRET_KEY={secret_key}
 
-run application
+Run application
 
 `$ flask run`
 
