@@ -9,6 +9,14 @@ Sovelluksen idea on antaa käyttäjien luoda kursseja, suorittaa kursseja ja saa
 - [x] Kursseille pystyy lisäämään eri sivuille tekstimateriaalia ja kyselyjä
 - [x] Materiaaleja voi olla useampi yhtä sivuakohden
 - [ ] Materiaaleja voi laittaa järjestykseen
+- [x] Kursseja voi poistaa
+- [ ] Yksittäisiä materiaaleja voi poistaa
+- [ ] Kursseja voi etsiä hakutoiminnolla
+- [x] Oman kurssin vastaajia voi nimeltä etsiä hakutoiminnolla
+- [x] Kyselyiden vastauksia voi lukea kurssin tekijä
+- [x] Kurssin tekijä voi lähettää haluamansa arvosanan käyttäjile
+- [x] Käyttäjä voi tarkastella saamiaan arvosanoja
+- [ ] Arvosanan lisäämistä varten on estoja jotka estävät laittamasta liikaa arvosanoja ja laittamasta niitä kenelle sattuu
 
 
 
