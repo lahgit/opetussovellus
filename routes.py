@@ -269,6 +269,9 @@ def register():
 
         if len(username) == 0:
             return render_template("error.html", message="Käyttäjänimi ei saa olla tyhjä")
+        
+        if len(username) > 20:
+            return render_template("error.html", message="Käyttäjänimi ei saa olla liian pitkä")
 
 
 
