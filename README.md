@@ -49,8 +49,8 @@ Import schema:
 
 and instert
 
-DATABASE_URL=postgresql:///{user}
-SECRET_KEY={secret_key}
+`DATABASE_URL=postgresql:///{user}`
+`SECRET_KEY={secret_key}`
 
 Run application
 
