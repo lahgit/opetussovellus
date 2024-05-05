@@ -97,6 +97,8 @@ def checkanswers(id):
         user_id = users.user_id()
         a = messages.get_user_from_course(id)
         material = messages.read_course_material(id)
+        user_answer_info = messages.search_answered_users(id)
+
         
 
         query = request.args.get("query")
@@ -113,7 +115,7 @@ def checkanswers(id):
             return render_template("error.html", message="materiaalia ei löytynyt")
 
         if user_id == a[0]:
-            return render_template("answerlist.html",answers=answers, id=id)
+            return render_template("answerlist.html",answers=answers, id=id, user_answer_info=user_answer_info)
         else: return render_template("error.html", message="ei oikeutta nähdä sivua")
 
     if request.method == "POST":
